@@ -25,6 +25,13 @@ on (de.dept_no = d.dept_no)
 inner join employees as e
 on (de.emp_no = e.emp_no)
 
+--list manager of departments, dept_no, dept_name, emp_no, last_name, first_name (via subquery)
+select dm.dept_no, dm.emp_no
+, (SELECT d.dept_name FROM departments d WHERE dm.dept_no = d.dept_no LIMIT 1)
+, (SELECT e.last_name FROM employees e WHERE dm.emp_no = e.emp_no LIMIT 1)
+, (SELECT e.first_name FROM employees e WHERE dm.emp_no = e.emp_no LIMIT 1)
+from dept_manager as dm
+
 --list name and sex of employees where first name is Hercules and last name begin with B
 select last_name, first_name, sex
 from employees
