@@ -17,7 +17,7 @@ on (dm.dept_no = d.dept_no)
 inner join employees as e
 on (dm.emp_no = e.emp_no)
 
---list manager of departments, dept_no, dept_name, emp_no, last_name, first_name (alternate solution to the previous question, using subquery)
+-- or alternate solution for the list of managers, using subquery, gives the same result)
 select dm.dept_no, dm.emp_no
 , (SELECT d.dept_name FROM departments d WHERE dm.dept_no = d.dept_no LIMIT 1)
 , (SELECT e.last_name FROM employees e WHERE dm.emp_no = e.emp_no LIMIT 1)
